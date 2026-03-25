@@ -1,0 +1,39 @@
+# .github/workflows/ci.yml
+
+name: CI Pipeline
+
+# What triggers this workflow?
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+# Define the jobs
+jobs:
+  build-and-test:
+    # The type of machine to run on
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up .NET SDK
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      # Step 3: Restore NuGet packages
+      - name: Restore dependencies
+        run: dotnet restore
+
+      # Step 4: Check code formatting
+      - name: Check formatting
+        run: dotnet format --verify-no-changes
+
+      # Step 5: Build the project
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
