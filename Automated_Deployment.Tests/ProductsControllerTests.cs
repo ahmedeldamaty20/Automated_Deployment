@@ -32,6 +32,6 @@ public class ProductsControllerTests
         // Assert - Check if the result is OkObjectResult and contains the expected list of products
         var okResult = Assert.IsType<OkObjectResult>(result);
         var products = Assert.IsType<List<Product>>(okResult.Value);
-        Assert.Equal(2, products.Count);
+        Assert.Equal(3, products.Count);
     }
 }
