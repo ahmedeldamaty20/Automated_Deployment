@@ -53,4 +53,6 @@ jobs:
 
       # Step 7: Run integration tests
       - name: Run Integration Tests
+        env:
+          SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
         run: dotnet test Automated_Deployment.IntegrationTests --no-restore --verbosity normal
