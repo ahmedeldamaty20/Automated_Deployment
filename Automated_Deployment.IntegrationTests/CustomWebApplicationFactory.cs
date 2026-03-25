@@ -15,16 +15,11 @@ namespace Automated_Deployment.IntegrationTests;
 
 public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {
-    public string ConnectionString { get; private set; } = string.Empty;
+    public string ConnectionString { get; } =
+    $"Server=localhost,1433;Database=TestDb;User Id=sa;Password={Environment.GetEnvironmentVariable("SQL_PASSWORD")};TrustServerCertificate=True";
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
-        builder.ConfigureAppConfiguration((context, config) =>
-        {
-            var configuration = config.Build();
-            ConnectionString = configuration.GetConnectionString("IntegrationTestsConnection")!;
-        });
-
         builder.ConfigureServices(services =>
         {
             // Remove the existing DbContext registration
