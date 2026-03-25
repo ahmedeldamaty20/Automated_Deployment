@@ -15,6 +15,15 @@ jobs:
     # The type of machine to run on
     runs-on: ubuntu-latest
 
+    services:
+      sqlserver:
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        env:
+          SA_PASSWORD: ${{ secrets.SQL_PASSWORD }}
+          ACCEPT_EULA: Y
+        ports:
+          - 1433:1433
+
     steps:
       # Step 1: Check out the code
       - name: Checkout code
@@ -38,6 +47,10 @@ jobs:
       - name: Build
         run: dotnet build --configuration Release --no-restore
 
-      # Step 6: Run tests
-      - name: Run tests
-        run: dotnet test --configuration Release --no-build --verbosity normal
+      # Step 6: Run unit tests
+      - name: Run Unit Tests
+        run: dotnet test Automated_Deployment.Tests --no-restore --verbosity normal
+
+      # Step 7: Run integration tests
+      - name: Run Integration Tests
+        run: dotnet test Automated_Deployment.IntegrationTests --no-restore --verbosity normal
