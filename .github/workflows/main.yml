@@ -28,12 +28,12 @@ jobs:
 
       # Step 3: Restore NuGet packages
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore Automated_Deployment/Automated_Deployment.csproj
 
       # Step 4: Check code formatting
       - name: Check formatting
-        run: dotnet format --verify-no-changes
+        run: dotnet format Automated_Deployment/Automated_Deployment.csproj --verify-no-changes
 
       # Step 5: Build the project
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build Automated_Deployment/Automated_Deployment.csproj --configuration Release --no-restore
