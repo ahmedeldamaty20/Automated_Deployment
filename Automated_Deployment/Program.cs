@@ -1,4 +1,7 @@
+using Automated_Deployment.Configurations;
 using Automated_Deployment.Data;
+using Automated_Deployment.Interfaces;
+using Automated_Deployment.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +13,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IProductService, ProductService>();
+
+builder.Services.Configure<DatabaseConnections>(builder.Configuration.GetSection("ConnectionStrings"));
 
 builder.Services.AddDbContext<AutomatedDeploymentDbContext>(options =>
 {
@@ -32,3 +39,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }
