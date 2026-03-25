@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Automated_Deployment.Tests/Automated_Deployment.Tests.csproj" />
+  <Project Path="Automated_Deployment/Automated_Deployment.csproj" />
+</Solution>
