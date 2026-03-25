@@ -40,4 +40,4 @@ jobs:
 
       # Step 6: Run tests
       - name: Run tests
-        run: dotnet test Automated_Deployment/Automated_Deployment.csproj --configuration Release --no-build --verbosity normal
+        run: dotnet test Automated_Deployment.Tests/Automated_Deployment.Tests.csproj --configuration Release --no-build --verbosity normal
