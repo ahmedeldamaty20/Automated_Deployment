@@ -1,4 +1,9 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".dockerignore" />
+    <File Path=".gitignore" />
+    <File Path="Dockerfile" />
+  </Folder>
   <Project Path="Automated_Deployment.IntegrationTests/Automated_Deployment.IntegrationTests.csproj" Id="db493a38-cec0-4092-94a1-063d33f3e491" />
   <Project Path="Automated_Deployment.Tests/Automated_Deployment.Tests.csproj" />
   <Project Path="Automated_Deployment/Automated_Deployment.csproj" />
