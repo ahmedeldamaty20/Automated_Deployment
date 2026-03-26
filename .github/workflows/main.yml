@@ -73,3 +73,30 @@ jobs:
           context: .
           push: true
           tags: ghcr.io/ahmedeldamaty20/automated_deployment:latest
+          
+      # Step 10: Login to Azure
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # Step 11: Run Database Migrations
+      - name: Run Database Migrations
+        env:
+          ConnectionStrings__DefaultConnection: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
+        run: |
+          dotnet tool install --global dotnet-ef
+          dotnet ef database update --project Automated_Deployment --no-build
+
+      # Step 12: Deploy to Azure Container Apps
+      - name: Deploy to Azure Container Apps
+        uses: azure/container-apps-deploy-action@v1
+        with:
+          resourceGroup: automated-deployment-rg
+          containerAppName: automated-deployment-app
+          imageToDeploy: ghcr.io/${{ github.repository }}:latest
+          registryUrl: ghcr.io
+          registryUsername: ${{ github.actor }}
+          registryPassword: ${{ secrets.GHCR_TOKEN }}
+
+     
