@@ -90,13 +90,9 @@ jobs:
 
       # Step 12: Deploy to Azure Container Apps
       - name: Deploy to Azure Container Apps
-        uses: azure/container-apps-deploy-action@v1
-        with:
-          resourceGroup: automated-deployment-rg
-          containerAppName: automated-deployment-app
-          imageToDeploy: ghcr.io/${{ github.repository }}:latest
-          registryUrl: ghcr.io
-          registryUsername: ${{ github.actor }}
-          registryPassword: ${{ secrets.GHCR_TOKEN }}
-
-     
+        run: |
+          az containerapp update \
+            --name automated-deployment-app \
+            --resource-group automated-deployment-rg \
+            --image ghcr.io/ahmedeldamaty20/automated_deployment:latest
+            
