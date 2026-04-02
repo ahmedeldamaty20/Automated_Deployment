@@ -2,10 +2,10 @@
 
 #nullable disable
 
-namespace Automated_Deployment.Data.Migration
+namespace Automated_Deployment.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class ProductsTable : Microsoft.EntityFrameworkCore.Migrations.Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
