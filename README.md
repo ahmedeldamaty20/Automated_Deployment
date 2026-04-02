@@ -99,7 +99,7 @@ dotnet test Automated_Deployment.IntegrationTests
 
 ```
 Automated_Deployment/
-├── Automated_Deployment/           # Main Web API project
+├── Automated_Deployment/           # Main API project
 ├── Automated_Deployment.Tests/     # Unit tests
 ├── Automated_Deployment.IntegrationTests/  # Integration tests
 ├── .github/
