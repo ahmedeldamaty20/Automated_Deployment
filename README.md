@@ -67,7 +67,7 @@ The API will be available at `https://localhost:5001`
 
 ---
 
-## 🧪 Running Tests
+## 🧪 Running Unit And Integration Tests
 
 ```bash
 # Run all tests
